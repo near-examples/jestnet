@@ -1,0 +1,33 @@
+{
+  "name": "NEAR-non-fungible-token",
+  "version": "0.0.1",
+  "description": "Implementation of NEP4 using Rust and AssemblyScript",
+  "author": "Near, Inc. <hello@near.org>",
+  "license": "(MIT AND Apache-2.0)",
+  "scripts": {
+    "build": "yarn build:as && yarn build:rs",
+    "build:as": "node ./contracts/assemblyscript/compile.js",
+    "build:rs": "(cd contracts/rust && ./build.sh)",
+    "clean": "rm -rf ./out && (cd contracts/rust && cargo clean)",
+    "test": "yarn test:unit:as && yarn test:unit:rs",
+    "dev:deploy": "rm -rf neardev && (near dev-deploy || exit 0)",
+    "test:sim": "yarn build:rs && yarn dev:deploy && NODE_ENV=testnet jest sim.test.js",
+    "test:unit:as": "asp --verbose --nologo -c contracts/assemblyscript/as-pect.config.js -f unit.spec",
+    "test:unit:rs": "(cd contracts/rust && cargo test -- --nocapture --color always)"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "jest": "^26.6.3",
+    "near-api-js": "^0.36.2",
+    "near-cli": "^1.5.2",
+    "near-sdk-as": "^2.2.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
