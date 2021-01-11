@@ -1,7 +1,15 @@
 Jest tests that run on testnet
 ==========================
+1. Run `yarn && yarn test:sim` after cloning this repo
+2. It will automatically create a NEW dev account and deploy the contract EACH time you call `yarn test:sim`
+3. Adjustments can be made in the config.js file
 
-
+### What's happening?
+1. Contracts are built
+2. The neardev folder that holds dev credentials is removed
+3. This forces `near dev-deploy` to create a new dev account and deploy your contract there
+4. `test/config.js` dynamically grabs the new account name and env vars
+5. `test/sim.test.js` runs the tests
 
 Non-Fungible Tokens (NFTs)
 ==========================
