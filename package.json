@@ -16,7 +16,7 @@
     "test:unit:rs": "(cd contracts/rust && cargo test -- --nocapture --color always)"
   },
   "devDependencies": {
-    "dotenv": "^9.0.2",
+    "dotenv": "^10.0.0",
     "jest": "^26.6.3",
     "near-api-js": "^0.41.0",
     "near-cli": "^2.0.0",
